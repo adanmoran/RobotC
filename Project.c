@@ -11,14 +11,14 @@
 #define SPEED 15
 
 //Light level stuff
-#define FLOOR_LOWER 47
-#define FLOOR_HIGHER 55
-#define BLUE_LOWER 30
-#define BLUE_HIGHER 40
-#define YELLOW_LOWER 59
-#define YELLOW_HIGHER 66
 #define BLACK_LOWER 0
-#define BLACK_HIGHER 29
+#define BLACK_HIGHER 25
+#define BLUE_LOWER 26
+#define BLUE_HIGHER 49
+#define FLOOR_LOWER 50
+#define FLOOR_HIGHER 58
+#define YELLOW_LOWER 59
+#define YELLOW_HIGHER 69
 
 	//Sound level stuff
 #define LOUD 60
@@ -162,11 +162,7 @@ task main()
 			isLoud();
 			speed = SPEED * direction * ultraLevel;
 			colour = SenseColour();
-			/*nxtDisplayTextLine(2, "Sound level: %d", soundLevel);
-			nxtDisplayTextLine(3, "Light Level: %d", lightLevel);
-			nxtDisplayTextLine(4, "Speed: %d", speed);
-			nxtDisplayTextLine(5, "ColourType: %d", colour);
-			nxtDisplayTextLine(6, "Ultrasonic: %f", ultraLevel);*/
+
 			//Drive or rotate based on the colour of the tape
 			switch(colour)
 			{
@@ -193,16 +189,16 @@ task main()
 					Drive(-speed/2, speed/2);
 					break;
 				case 3: //On Black
-					DisplayImages(star);
+				  DisplayImages(star);
 					nxtDisplayBigStringAt(30, 35, "YAY!");
 					Drive(0, 0);
 					finished = true;
 					break;
 				case 4: //None of the above
 					nxtDisplayBigStringAt(20,35, "ERROR");
-					nxtDisplayTextLine(6, "Colour not");
+				  nxtDisplayTextLine(6, "Colour not");
 					nxtDisplayTextLine(7, "recognized.");
-					Drive(0,0);
+					Drive(speed,speed);
 					break;
 			}
 		wait10Msec(20); //delay 200 msecs before next loop repetition
